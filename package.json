@@ -10,16 +10,25 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:vscode-simple-todo.helloWorld"
+		"onCommand:simple-todo.open-project-todo"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "vscode-simple-todo.helloWorld",
-				"title": "Hello World"
+				"command": "simple-todo.open-project-todo",
+				"title": "Simple Todo: Open Project TODO File"
 			}
-		]
+		],
+		"configuration": {
+			"title": "Simple TODO Configuration",
+			"properties": {
+				"simple-todo.todoDirectory": {
+					"title": "Location to store user and project TODO files",
+					"default": "${env:HOME}"
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -42,5 +51,7 @@
 		"typescript": "^4.0.2",
 		"vscode-test": "^1.4.0"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"fs-extra": "^9.0.1"
+	}
 }
