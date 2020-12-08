@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:simple-todo.open-project-todo"
+		"onCommand:simple-todo.open-project-todo",
+		"onCommand:simple-todo.open-user-todo"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -18,14 +19,19 @@
 			{
 				"command": "simple-todo.open-project-todo",
 				"title": "Simple Todo: Open Project TODO File"
+			},
+			{
+				"command": "simple-todo.open-user-todo",
+				"title": "Simple Todo: Open User TODO File"
 			}
 		],
 		"configuration": {
 			"title": "Simple TODO Configuration",
 			"properties": {
-				"simple-todo.todoDirectory": {
-					"title": "Location to store user and project TODO files",
-					"default": "${env:HOME}"
+				"simple-todo.todoFileDirectory": {
+					"description": "Location to store all TODO files",
+					"type": "string",
+					"scope": "resource"
 				}
 			}
 		}
@@ -36,22 +42,35 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
+		"test": "jest"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.0.0",
 		"@types/node": "^12.11.7",
 		"@types/vscode": "^1.51.0",
 		"@typescript-eslint/eslint-plugin": "^4.8.2",
 		"@typescript-eslint/parser": "^4.8.2",
 		"eslint": "^7.14.0",
 		"glob": "^7.1.6",
-		"mocha": "^8.1.3",
+		"jest": "^26.6.3",
+		"ts-jest": "^26.4.4",
 		"typescript": "^4.0.2",
 		"vscode-test": "^1.4.0"
 	},
 	"dependencies": {
 		"fs-extra": "^9.0.1"
+	},
+	"jest": {
+		"transform": {
+			"^.+\\.tsx?$": "ts-jest"
+		},
+		"testRegex": ".*?/test/.*\\.test(\\.ts|\\.js)",
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"json",
+			"jsx"
+		]
 	}
 }

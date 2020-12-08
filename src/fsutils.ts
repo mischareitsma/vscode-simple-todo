@@ -6,3 +6,9 @@ export function createFileIfNotExists(fileName: string) {
 		fs.openSync(fileName, 'a');
 	}
 }
+
+export function createDirIfNotExists(dirName: string) {
+	if (!fs.existsSync(dirName)) {
+		fs.mkdirSync(dirName);
+	}
+}

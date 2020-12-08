@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-import {openProjectTodoFile} from './todo';
+import {openProjectTodoFile, openUserTodoFile} from './commands';
 
 export function activate(context: vscode.ExtensionContext)
 {
@@ -10,6 +10,11 @@ export function activate(context: vscode.ExtensionContext)
 	context.subscriptions.push(
 		vscode.commands.registerCommand('simple-todo.open-project-todo', openProjectTodoFile)
 	);
+
+	context.subscriptions.push(
+		vscode.commands.registerCommand('simple-todo.open-user-todo', openUserTodoFile)
+	);
+
 }
 
 export function deactivate()
