@@ -37,7 +37,7 @@ function getTodoFileDirectory(): string {
 
 	// FIXME: This error is not handled properly, should return str or undefined and just deal with
 	// undefined in the caller?
-	if (typeof todoFileLocation === 'undefined' ) {
+	if (!todoFileLocation) {
 		throw new Error('Please configure the TODO file directory in the settings');
 	}
 
